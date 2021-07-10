@@ -1,7 +1,9 @@
 import "../styles.css";
 import { Link } from "react-router-dom";
+import { useAuth } from "../auth-context";
 
 export default function Navbar() {
+  const { auth, dispatchAuth } = useAuth();
   return (
     <div className="navigation-bar">
       <span className="navigation-bar-logo material-icons">
@@ -9,12 +11,9 @@ export default function Navbar() {
       </span>
       <nav>
         <ul className="navigation-bar-links">
+          <li className="color-white">Welcome {auth?.username || "Guest"}!</li>
           <li>
             <Link to="/">Home</Link>
-            {/* <div
-              title={`${isOnline ? "online" : "offline"}`}
-              className={`isOnline ${isOnline ? "lg" : "gy"}`}
-            /> */}
           </li>
           <li>
             <Link to="/liked">Liked</Link>
@@ -22,13 +21,16 @@ export default function Navbar() {
           <li>
             <Link to="/playlist">Playlist</Link>
           </li>
+          {auth.username && (
+            <li
+              className="color-white"
+              onClick={() => dispatchAuth({ type: "LOGOUT_USER", payload: {} })}
+            >
+              Logout
+            </li>
+          )}{" "}
         </ul>
       </nav>
     </div>
-    // <nav>
-    //   <Link to="/">Home</Link>
-    //   {" || "}
-    //   <Link to="/liked">Liked</Link>
-    // </nav>
   );
 }

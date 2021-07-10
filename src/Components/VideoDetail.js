@@ -2,60 +2,104 @@ import "../styles.css";
 import { usePlaylist } from "../playlist-context";
 import { useVideos } from "../video-context";
 import { useParams, Link } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
 
 export default function VideoDetail() {
   const { videos, setVideos } = useVideos();
-  const { playlist, setPlaylist } = usePlaylist();
-  console.log(playlist);
   const { videoId } = useParams();
-  const video = videos.find((video) => video.id === Number(videoId));
-  // const likeVideo = () => {
-  //   let temp = videos.map((video) => {
-  //     if (`${video?.id}` === videoId) {
-  //       return { ...video, isLiked: !video.isLiked };
-  //     }
-  //     return videos;
-  //   });
-  //   setVideos(temp);
-  // };
+  const video = videos.find((video) => video._id === videoId);
+  const { state, dispatch } = usePlaylist();
+  const [showPL, setShowPL] = useState(false);
+  const [name, setName] = useState("");
   const likeVideo = (id) => {
     let temp = videos.map((item) =>
-      item.id === id ? { ...item, isLiked: !item.isLiked } : item
+      item._id === id ? { ...item, isLiked: !item.isLiked } : item
     );
     setVideos(temp);
   };
+  const playlistOperations = (name, condtn) => {
+    if (condtn) {
+      dispatch({
+        type: "DELETE_FROM_PLAYLIST",
+        payload: { id: videoId, name }
+      });
+    } else {
+      dispatch({
+        type: "ADD_TO_PLAYLIST",
+        payload: { id: videoId, name }
+      });
+      console.log("false");
+    }
+  };
+  const createPlaylist = (e) => {
+    e.preventDefault();
+    if (name.trim()) {
+      dispatch({ type: "CREATE_PLAYLIST", payload: { name } });
+    }
+    setName("");
+  };
+  const inputRef = useRef(null);
+  useEffect(() => {
+    if (showPL) {
+      inputRef.current.focus();
+    }
+  }, [showPL]);
+
+  /*
+   */
   return (
     <div>
-      <h1>This is a Video</h1>
+      {showPL && (
+        <div id="modal">
+          <form onSubmit={createPlaylist} className="modal-content">
+            <input
+              type="text"
+              value={name}
+              ref={inputRef}
+              onChange={(e) => setName(e.target.value)}
+            />
+            <button type="submit">Create</button>
+            <ul className="spaced-list">
+              {Object.keys(state).map((el) => (
+                <li className="spaced-list-item" key={el}>
+                  <Link to={`/playlist/${el}`}>{el}</Link>
+                  <span
+                    onClick={() =>
+                      playlistOperations(el, state[el].includes(videoId))
+                    }
+                  >
+                    {state[el].includes(videoId) ? " Remove" : " Add"}
+                  </span>
+                </li>
+              ))}
+            </ul>
+            <a href="#" className="close-modal">
+              <button onClick={() => setShowPL(false)}>X</button>
+            </a>
+          </form>
+        </div>
+      )}
       <iframe
         width="600"
         height="400"
-        src={video.url}
+        src={video.url} //cannot read property url of undefined
         title="YTube video player"
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
       ></iframe>
       <p>{video.title}</p>
-
       <button
         className={video.isLiked ? "icon-btn-red" : "icon-btn"}
-        onClick={() => likeVideo(video.id)}
+        onClick={() => likeVideo(video._id)}
       >
         <span className="material-icons">
           {video.isLiked ? "thumb_up" : "thumb_up_off_alt"}
         </span>
       </button>
       <button className="icon-btn">
-        <span
-          class="material-icons"
-          onClick={() => {
-            if (!playlist.includes(video.id)) {
-              setPlaylist([...playlist, video.id]);
-            }
-          }}
-        >
-          {playlist.includes(video.id) ? "playlist_add_check" : "playlist_add"}
+        <span className="material-icons" onClick={() => setShowPL(true)}>
+          <a href="#modal">playlist_add</a>
         </span>
       </button>
       <br />

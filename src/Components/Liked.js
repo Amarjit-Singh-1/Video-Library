@@ -13,12 +13,12 @@ export default function Liked() {
       <>
         <li className="cards-item">
           <Link
-            to={`/video-detail/${item.id}`}
+            to={`/video-detail/${item._id}`}
             style={{ color: "inherit", textDecoration: "none" }}
           >
             <div className="card">
               <img src={item.image} alt="thumbnail" />
-              {item.title}
+              <span className="card-text">{item.title}</span>
             </div>
           </Link>
         </li>
@@ -29,7 +29,7 @@ export default function Liked() {
     <>
       {length ? (
         <div>
-          <h1>This is Liked Component</h1>
+          <h4>Your Liked Videos will show here</h4>
           <ul className="cards">
             {videos.map((item) => {
               if (item.isLiked) {
@@ -41,52 +41,8 @@ export default function Liked() {
           </ul>
         </div>
       ) : (
-        <h1>NO LIKED VIDEOS</h1>
+        <h1>You have no Liked Videos</h1>
       )}
     </>
   );
-}
-
-{
-  /* <ul className="cards">
-        {videos.map((item) => {
-          item.isLiked ? (
-            <>
-              <li className="cards-item">
-                <Link
-                  to={`/video-detail/${item.id}`}
-                  style={{ color: "inherit", textDecoration: "none" }}
-                >
-                  <div className="card">
-                    <img src={item.image} alt="thumbnail" />
-                    {item.title}
-                  </div>
-                </Link>
-              </li>
-            </>)
-          ) : (
-            <h1></h1>
-        )}
-      </ul> */
-}
-{
-  /* <ul className="cards">
-        {videos.map((item) => {
-          if (item.isLiked) {
-            return (
-              <li className="cards-item">
-                <Link
-                  to={`/video-detail/${item.id}`}
-                  style={{ color: "inherit", textDecoration: "none" }}
-                >
-                  <div className="card">
-                    <img src={item.image} alt="thumbnail" />
-                    {item.title}
-                  </div>
-                </Link>
-              </li>
-            );
-          }
-        })}
-      </ul> */
 }
