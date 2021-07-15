@@ -1,7 +1,7 @@
 import "../styles.css";
 import { Link, useParams } from "react-router-dom";
-import { usePlaylist } from "../playlist-context";
-import { useVideos } from "../video-context";
+import { usePlaylist } from "../Contexts/playlist-context";
+import { useVideos } from "../Contexts/video-context";
 export default function Playlist() {
   const { state, dispatch } = usePlaylist();
   const { playlistName } = useParams();

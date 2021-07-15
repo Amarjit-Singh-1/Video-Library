@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { getVideos } from "./apiCalls";
+import { getVideos } from "../apiCalls";
 
 export const VideoContext = createContext();
 

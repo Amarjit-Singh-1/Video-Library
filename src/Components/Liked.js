@@ -1,9 +1,9 @@
 import "../styles.css";
-import { useVideos } from "../video-context";
+import { useVideos } from "../Contexts/video-context";
 import { Link } from "react-router-dom";
 
 export default function Liked() {
-  const { videos, setVideos } = useVideos();
+  const { videos } = useVideos();
   const length = videos.reduce(
     (len, item) => (item.isLiked ? len + 1 : len),
     0
@@ -41,7 +41,7 @@ export default function Liked() {
           </ul>
         </div>
       ) : (
-        <h1>You have no Liked Videos</h1>
+        <h3>You have no Liked Videos</h3>
       )}
     </>
   );

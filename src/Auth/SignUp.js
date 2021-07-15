@@ -1,13 +1,15 @@
 import { useState } from "react";
 import axios from "axios";
-import { useAuth } from "../auth-context";
+import { useAuth } from "../Contexts/auth-context";
 import "../styles.css";
 
 export function SignUp() {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const [signingIn, setSigningIn] = useState(false);
   const { dispatchAuth } = useAuth();
   const handleSubmit = async (e) => {
+    setSigningIn(true);
     try {
       e.preventDefault();
       const res = await axios.put(
@@ -17,7 +19,9 @@ export function SignUp() {
           password
         }
       );
-      console.log(res);
+      setSigningIn(false);
+      setUserName("");
+      setPassword("");
       if (res.data.user.username) {
         const { _id, username } = res.data.user;
         dispatchAuth({
@@ -47,7 +51,7 @@ export function SignUp() {
         onChange={(e) => setPassword(e.target.value)}
       />
       <button type="submit" className="form-btn">
-        Sign Up
+        {signingIn ? "Signing you in.." : "Sign Up"}
       </button>
     </form>
   );

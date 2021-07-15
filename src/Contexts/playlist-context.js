@@ -1,5 +1,5 @@
 import { createContext, useContext, useReducer } from "react";
-import { playlistReducer } from "./Reducer/playlistReducer";
+import { playlistReducer } from "../Reducers/playlistReducer";
 // import { getPlaylists } from "./apiCalls";
 
 export const PlaylistContext = createContext();

@@ -1,9 +1,9 @@
 import "../styles.css";
 import { Link } from "react-router-dom";
-import { useVideos } from "../video-context";
+import { useVideos } from "../Contexts/video-context";
 
 export default function Home() {
-  const { videos, setVideos } = useVideos();
+  const { videos } = useVideos();
   console.log(videos);
   return (
     <div>

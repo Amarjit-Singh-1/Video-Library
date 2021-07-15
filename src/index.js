@@ -1,9 +1,9 @@
 import { StrictMode } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
-import { VideoProvider } from "./video-context";
-import { PlaylistProvider } from "./playlist-context";
-import { AuthProvider } from "./auth-context";
+import { VideoProvider } from "./Contexts/video-context";
+import { PlaylistProvider } from "./Contexts/playlist-context";
+import { AuthProvider } from "./Contexts/auth-context";
 
 import App from "./App";
 

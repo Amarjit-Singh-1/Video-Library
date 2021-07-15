@@ -10,7 +10,7 @@ import PlayListContainer from "./Components/PlayListContainer";
 import PrivateRoute from "./PrivateRoute";
 import { SignIn } from "./Auth/SignIn";
 import { SignUp } from "./Auth/SignUp";
-import { useAuth } from "./auth-context";
+import { useAuth } from "./Contexts/auth-context";
 
 export default function App() {
   const { auth } = useAuth();

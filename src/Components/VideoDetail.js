@@ -1,6 +1,6 @@
 import "../styles.css";
-import { usePlaylist } from "../playlist-context";
-import { useVideos } from "../video-context";
+import { usePlaylist } from "../Contexts/playlist-context";
+import { useVideos } from "../Contexts/video-context";
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 
@@ -54,22 +54,32 @@ export default function VideoDetail() {
           <form onSubmit={createPlaylist} className="modal-content">
             <input
               type="text"
+              className="modal-input"
               value={name}
               ref={inputRef}
               onChange={(e) => setName(e.target.value)}
             />
-            <button type="submit">Create</button>
-            <ul className="spaced-list">
+            <button type="submit" className="modal-btn">
+              Create
+            </button>
+            <ul className="modal-list">
               {Object.keys(state).map((el) => (
-                <li className="spaced-list-item" key={el}>
-                  <Link to={`/playlist/${el}`}>{el}</Link>
-                  <span
+                <li className="modal-list-item" key={el}>
+                  <Link
+                    to={`/playlist/${el}`}
+                    style={{ color: "inherit", textDecoration: "none" }}
+                  >
+                    {el}
+                  </Link>
+                  <button
                     onClick={() =>
                       playlistOperations(el, state[el].includes(videoId))
                     }
+                    className="modal-btn"
+                    // style={{ float: "right" }}
                   >
                     {state[el].includes(videoId) ? " Remove" : " Add"}
-                  </span>
+                  </button>
                 </li>
               ))}
             </ul>

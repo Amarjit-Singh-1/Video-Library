@@ -84,6 +84,8 @@ body {
   padding: 0.5rem;
 }
 
+/* Buttons */
+
 .icon-btn {
   border: none;
   outline: none;
@@ -104,21 +106,24 @@ body {
   font-size: 36px;
 }
 
+/* Lists */
+
 .spaced-list {
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: center; */
   list-style-type: none;
   background: white;
 }
 .spaced-list-item {
-  flex-basis: auto;
+  display: flex;
+  justify-content: center;
   color: #000;
-  padding: 8px;
-  text-decoration: none;
+  padding: 1rem;
 }
 .spaced-list-item:hover {
   cursor: pointer;
+  text-decoration: underline;
 }
 
 /* Modal */
@@ -151,10 +156,33 @@ body {
   padding: 10px 20px;
   background: #eee;
 }
+
+.modal-input {
+  margin: 1rem;
+}
+
+.modal-btn {
+  background-color: var(--secondary-color);
+  color: white;
+}
+
+.modal-list {
+  list-style-type: none;
+  background: white;
+}
+
+.modal-list-item {
+  display: flex;
+  justify-content: space-between;
+  color: #000;
+  padding: 0.5rem;
+  text-decoration: none;
+}
+
 #modal a.close-modal {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 0.5rem;
+  right: 0.5rem;
   font-size: 20px;
   font-weight: 600;
   text-decoration: none;
@@ -162,6 +190,8 @@ body {
 #modal:target {
   display: block;
 }
+
+/* Form */
 
 .input {
   /* width: ; */

@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
-import { usePlaylist } from "../playlist-context";
-import { deletePlaylist } from "../apiCalls";
+import { usePlaylist } from "../Contexts/playlist-context";
 
 function PlayListContainer() {
   const { state, dispatch } = usePlaylist();
@@ -15,21 +14,25 @@ function PlayListContainer() {
   return (
     <div>
       <h3>All your Playlist are here</h3>
-      <ul className="spaced-list">
-        {Object.keys(state).map((playlist) => (
-          <>
-            <Link
-              to={"/playlist/" + playlist}
-              style={{ textDecoration: "none" }}
-            >
-              <li className="spaced-list-item" key={playlist}>
-                {playlist}
-              </li>
-            </Link>
-            <DeleteSvg deleteHandler={deleteHandler} playlist={playlist} />
-          </>
-        ))}
-      </ul>
+      {Object.keys(state).length ? (
+        <ul className="spaced-list">
+          {Object.keys(state).map((playlist) => (
+            <>
+              <Link
+                to={"/playlist/" + playlist}
+                style={{ textDecoration: "none" }}
+              >
+                <li className="spaced-list-item" key={playlist}>
+                  {playlist}
+                </li>
+              </Link>
+              <DeleteSvg deleteHandler={deleteHandler} playlist={playlist} />
+            </>
+          ))}
+        </ul>
+      ) : (
+        <h3>You have no Playlists</h3>
+      )}
     </div>
   );
 }

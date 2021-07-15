@@ -1,14 +1,16 @@
 import axios from "axios";
 import { useState } from "react";
-import { useAuth } from "../auth-context";
+import { useAuth } from "../Contexts/auth-context";
 import { Link } from "react-router-dom";
 import "../styles.css";
 
 export function SignIn() {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const [isLogging, setIsLogging] = useState(false);
   const { dispatchAuth } = useAuth();
   const handleSubmit = async (e) => {
+    setIsLogging(true);
     try {
       e.preventDefault();
       const res = await axios.post(
@@ -18,7 +20,9 @@ export function SignIn() {
           password
         }
       );
-      console.log(res);
+      setIsLogging(false);
+      setUserName("");
+      setPassword("");
       if (res.data.user.username) {
         const { _id, username } = res.data.user;
         dispatchAuth({
@@ -30,6 +34,7 @@ export function SignIn() {
       }
     } catch (error) {
       console.log(error);
+      setIsLogging(false);
     }
   };
   return (
@@ -51,7 +56,7 @@ export function SignIn() {
         Don't have an account <Link to="/signup">create account</Link>
       </span>
       <button className="form-btn" type="submit">
-        Login
+        {isLogging ? "Logging you in.." : "Login"}
       </button>
     </form>
   );
