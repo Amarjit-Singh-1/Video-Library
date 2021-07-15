@@ -1,0 +1,230 @@
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+body {
+  margin: 0;
+  padding-top: 75px;
+}
+
+:root {
+  --primary-color: #202124;
+  --secondary-color: #928884;
+}
+
+/* Navigation */
+.navigation-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.7rem 10%;
+  margin: 0;
+  background-color: var(--primary-color);
+  box-sizing: border-box;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 10;
+}
+
+.navigation-bar-logo {
+  color: white;
+  font-size: 2.5rem;
+}
+
+.navigation-title {
+  padding: 0;
+}
+
+.navigation-bar-links a {
+  font-weight: 500;
+  color: #edf0f1;
+  text-decoration: none;
+}
+
+.navigation-bar-links {
+  list-style: none;
+  display: flex;
+}
+
+.navigation-bar-links li {
+  padding: 0rem 1.2rem;
+}
+
+/* Cards */
+
+.cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cards-item {
+  display: flex;
+  padding: 1.5rem;
+  width: 16rem;
+}
+
+.card {
+  background-color: white;
+  border-radius: 0.25rem;
+  box-shadow: 0 5px 10px 0px rgb(0 0 0 / 50%);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.card-text {
+  padding: 0.5rem;
+}
+
+/* Buttons */
+
+.icon-btn {
+  border: none;
+  outline: none;
+  background: transparent;
+  cursor: pointer;
+  margin: 1rem;
+}
+
+.icon-btn-red {
+  border: none;
+  outline: none;
+  background: transparent;
+  cursor: pointer;
+  margin: 1rem;
+  color: red;
+}
+.material-icons {
+  font-size: 36px;
+}
+
+/* Lists */
+
+.spaced-list {
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center; */
+  list-style-type: none;
+  background: white;
+}
+.spaced-list-item {
+  display: flex;
+  justify-content: center;
+  color: #000;
+  padding: 1rem;
+}
+.spaced-list-item:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* Modal */
+
+.center a {
+  padding: 10px 20px;
+  background: #eee;
+  color: #111;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 5px;
+}
+#modal {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.75);
+  display: none;
+  z-index: 10;
+}
+#modal .modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  padding: 10px 20px;
+  background: #eee;
+}
+
+.modal-input {
+  margin: 1rem;
+}
+
+.modal-btn {
+  background-color: var(--secondary-color);
+  color: white;
+}
+
+.modal-list {
+  list-style-type: none;
+  background: white;
+}
+
+.modal-list-item {
+  display: flex;
+  justify-content: space-between;
+  color: #000;
+  padding: 0.5rem;
+  text-decoration: none;
+}
+
+#modal a.close-modal {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  font-size: 20px;
+  font-weight: 600;
+  text-decoration: none;
+}
+#modal:target {
+  display: block;
+}
+
+/* Form */
+
+.input {
+  /* width: ; */
+  border: 2px solid #aaa;
+  border-radius: 4px;
+  margin: 8px 0;
+  outline: none;
+  padding: 8px;
+  box-sizing: border-box;
+  transition: 0.5s;
+}
+
+.input:focus {
+  border-color: dodgerblue;
+  box-shadow: 0 0 8px 0 dodgerblue;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.color-white {
+  color: whitesmoke;
+}
+
+.form-btn {
+  background-color: var(--secondary-color);
+  padding: 0.5rem 1rem;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  margin-top: 0.8rem;
+}
